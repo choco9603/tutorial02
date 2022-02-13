@@ -63,7 +63,7 @@ async function weatherDate(){
     
     for (var i = 0;i<wtrDate.daily.weathercode.length;i++){
     const list = document.createElement("li");
-    const result = Arr.find((v) => v.code === wtrDate.daily.weathercode[i]);
+    const result = await Arr.find((v) => v.code === wtrDate.daily.weathercode[i]);
     list.innerText = wtrDate.daily.time[i] + ':' + result.description;
     lists.appendChild(list);
     }
