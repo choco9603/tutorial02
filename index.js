@@ -10,7 +10,7 @@ async function getWeather(){
 
 async function weatherDate(){
   const wtrDate = await getWeather();
-  
+  //グラフの作成
     const tmpDate = await {
       labels: wtrDate.daily.time,
       datasets:[{
@@ -23,13 +23,14 @@ async function weatherDate(){
         borderColor: 'rgb(75,75,192)',
       }]
     }
-     
+    
+    //グラフ生成
      new Chart(document.getElementById("stage"),{
        type: 'line',
        data: tmpDate,
      });
      
-     
+    //weathercodeの詳細
     const Arr = [
       {code:0,description:'Clear sky'},
       {code:1,description:'Mainly clear, partly cloudy, and overcast'},
@@ -62,7 +63,9 @@ async function weatherDate(){
       ];
     
     for (var i = 0;i<wtrDate.daily.weathercode.length;i++){
+    //リストの追加
     const list = document.createElement("li");
+    //weathercodeの変換
     const result = await Arr.find((v) => v.code === wtrDate.daily.weathercode[i]);
     list.innerText = wtrDate.daily.time[i] + ':' + result.description;
     lists.appendChild(list);
@@ -71,43 +74,3 @@ async function weatherDate(){
 
 
 weatherDate();
-
-// async function drawChart(wtrDate){
-  
-//   const temDate = {
-//     console.log(wtrDate.daily.time);
-//   }
-// }
-
-
-
-
-
-// const button = documeant.getElementById("addBtn");
-// const lists = document.getElementById("lists");
-
-// async function getUsers(){
-//   //データのやり取り
-//   const res = await fetch("https://jsonplaceholder.typicode.com/users");
-//   const users = await res.json();
-//   //console.log(users);
-//   return users;
-// }
-
-// function addList(user) {
-//   const list = document.createElement("li");
-//   list.innerText = user.name
-//   lists.appendChild(list);
-// }
-
-// async function listUsers() {
-//   const users = await getUsers();
-
-//   //DOM操作
-//   users.forEach(addList);
-// }
-
-// button.addEventListener("click",listUsers);
-
-// window.addEventListener("load",listUsers);
-
